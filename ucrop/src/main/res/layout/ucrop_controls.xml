@@ -10,12 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/ucrop_height_wrapper_controls"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="0dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/ucrop_wrapper_controls_shape" />
+        android:layout_marginBottom="0dp"
+        android:background="@color/ucrop_color_widget_background"
+        >
 
         <LinearLayout
             android:id="@+id/layout_aspect_ratio"

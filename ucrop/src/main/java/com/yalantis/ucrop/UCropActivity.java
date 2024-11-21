@@ -296,6 +296,7 @@ public class UCropActivity extends AppCompatActivity {
         mToolbarTitle = intent.getStringExtra(UCrop.Options.EXTRA_UCROP_TITLE_TEXT_TOOLBAR);
         mToolbarTitle = mToolbarTitle != null ? mToolbarTitle : getResources().getString(R.string.ucrop_label_edit_photo);
         mLogoColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_LOGO_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_default_logo));
+        int mControlLayoutColor = intent.getIntExtra(UCrop.Options.EXTRA_CONTROL_LAYOUT_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_ebony_clay));
         mShowBottomControls = !intent.getBooleanExtra(UCrop.Options.EXTRA_HIDE_BOTTOM_CONTROLS, false);
         mRootViewBackgroundColor = intent.getIntExtra(UCrop.Options.EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR, ContextCompat.getColor(this, R.color.ucrop_color_crop_background));
 
@@ -307,7 +308,10 @@ public class UCropActivity extends AppCompatActivity {
             ViewGroup viewGroup = findViewById(R.id.ucrop_photobox);
             ViewGroup wrapper = viewGroup.findViewById(R.id.controls_wrapper);
             wrapper.setVisibility(View.VISIBLE);
-            LayoutInflater.from(this).inflate(R.layout.ucrop_controls, wrapper, true);
+
+            View controls = LayoutInflater.from(this).inflate(R.layout.ucrop_controls, wrapper, true);
+            controls.findViewById(R.id.wrapper_controls).setBackgroundColor(mControlLayoutColor);
+            controls.findViewById(R.id.wrapper_states).setBackgroundColor(mControlLayoutColor);
 
             mControlsTransition = new AutoTransition();
             mControlsTransition.setDuration(CONTROLS_ANIMATION_DURATION);
