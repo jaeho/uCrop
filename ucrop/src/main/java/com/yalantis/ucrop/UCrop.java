@@ -11,12 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 
-import com.yalantis.ucrop.model.AspectRatio;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -24,6 +18,12 @@ import androidx.annotation.FloatRange;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.yalantis.ucrop.model.AspectRatio;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * Created by Oleksii Shliama (https://github.com/shliama).
@@ -295,6 +295,7 @@ public class UCrop {
 
         public static final String EXTRA_TOOL_BAR_COLOR = EXTRA_PREFIX + ".ToolbarColor";
         public static final String EXTRA_STATUS_BAR_COLOR = EXTRA_PREFIX + ".StatusBarColor";
+        public static final String EXTRA_CONTROL_LAYOUT_COLOR = EXTRA_PREFIX + ".ControlLayoutColor";
         public static final String EXTRA_UCROP_COLOR_CONTROLS_WIDGET_ACTIVE = EXTRA_PREFIX + ".UcropColorControlsWidgetActive";
 
         public static final String EXTRA_UCROP_WIDGET_COLOR_TOOLBAR = EXTRA_PREFIX + ".UcropToolbarWidgetColor";
@@ -400,6 +401,10 @@ public class UCrop {
          */
         public void setCropFrameColor(@ColorInt int color) {
             mOptionBundle.putInt(EXTRA_CROP_FRAME_COLOR, color);
+        }
+
+        public void setControlLayoutColor(@ColorInt int color) {
+            mOptionBundle.putInt(EXTRA_CONTROL_LAYOUT_COLOR, color);
         }
 
         /**
