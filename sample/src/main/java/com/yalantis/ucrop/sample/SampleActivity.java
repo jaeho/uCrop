@@ -3,6 +3,7 @@ package com.yalantis.ucrop.sample;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
@@ -25,6 +26,13 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 import com.yalantis.ucrop.UCropFragment;
@@ -33,13 +41,6 @@ import com.yalantis.ucrop.UCropFragmentCallback;
 import java.io.File;
 import java.util.Locale;
 import java.util.Random;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 
 /**
  * Created by Oleksii Shliama (https://github.com/shliama).
@@ -230,7 +231,11 @@ public class SampleActivity extends BaseActivity implements UCropFragmentCallbac
                 break;
         }
 
-        UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
+        UCrop.Options options = new UCrop.Options();
+        options.setControlLayoutColor(Color.BLACK);
+        UCrop uCrop = UCrop
+                .of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)))
+                .withOptions(options);
 
         uCrop = basisConfig(uCrop);
         uCrop = advancedConfig(uCrop);
@@ -240,7 +245,6 @@ public class SampleActivity extends BaseActivity implements UCropFragmentCallbac
         } else {                                                        // else start uCrop Activity
             uCrop.start(SampleActivity.this);
         }
-
     }
 
     /**

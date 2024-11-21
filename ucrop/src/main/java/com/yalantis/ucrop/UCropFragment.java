@@ -1,5 +1,7 @@
 package com.yalantis.ucrop;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,6 +19,18 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.IdRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.transition.AutoTransition;
+import androidx.transition.Transition;
+import androidx.transition.TransitionManager;
+
 import com.yalantis.ucrop.callback.BitmapCropCallback;
 import com.yalantis.ucrop.model.AspectRatio;
 import com.yalantis.ucrop.util.SelectedStateListDrawable;
@@ -33,20 +47,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.IdRes;
-import androidx.annotation.IntDef;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.transition.AutoTransition;
-import androidx.transition.Transition;
-import androidx.transition.TransitionManager;
-
-import static android.app.Activity.RESULT_OK;
 
 @SuppressWarnings("ConstantConditions")
 public class UCropFragment extends Fragment {
@@ -142,6 +142,7 @@ public class UCropFragment extends Fragment {
         mLogoColor = args.getInt(UCrop.Options.EXTRA_UCROP_LOGO_COLOR, ContextCompat.getColor(getContext(), R.color.ucrop_color_default_logo));
         mShowBottomControls = !args.getBoolean(UCrop.Options.EXTRA_HIDE_BOTTOM_CONTROLS, false);
         mRootViewBackgroundColor = args.getInt(UCrop.Options.EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR, ContextCompat.getColor(getContext(), R.color.ucrop_color_crop_background));
+        int mControlLayoutColor = args.getInt(UCrop.Options.EXTRA_CONTROL_LAYOUT_COLOR, ContextCompat.getColor(getContext(), R.color.ucrop_color_ebony_clay));
 
         initiateRootViews(view);
         callback.loadingProgress(true);
@@ -151,6 +152,10 @@ public class UCropFragment extends Fragment {
             ViewGroup wrapper = view.findViewById(R.id.controls_wrapper);
             wrapper.setVisibility(View.VISIBLE);
             LayoutInflater.from(getContext()).inflate(R.layout.ucrop_controls, wrapper, true);
+
+            View controls = LayoutInflater.from(getContext()).inflate(R.layout.ucrop_controls, wrapper, true);
+            controls.findViewById(R.id.wrapper_controls).setBackgroundColor(mControlLayoutColor);
+            controls.findViewById(R.id.wrapper_states).setBackgroundColor(mControlLayoutColor);
 
             mControlsTransition = new AutoTransition();
             mControlsTransition.setDuration(CONTROLS_ANIMATION_DURATION);
