@@ -5,7 +5,7 @@
     <color name="ucrop_color_black">#000</color>
     <color name="ucrop_color_blaze_orange">#4857ff</color>
     <color name="ucrop_color_ebony_clay">#fff</color>
-    <color name="ucrop_color_heather">#B3BECE</color>
+    <color name="ucrop_color_heather">#fff</color>
     <color name="ucrop_color_white">#FFF</color>
 
     <!--uCrop Activity-->
